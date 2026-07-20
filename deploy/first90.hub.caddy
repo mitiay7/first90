@@ -1,0 +1,17 @@
+first90.hub.lea-dev.site, first90-studio.hub.lea-dev.site, first90-api.hub.lea-dev.site {
+	tls {
+		dns cloudflare {env.LEA_CF_TOKEN}
+	}
+
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy strict-origin-when-cross-origin
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		-Server
+	}
+
+	reverse_proxy 127.0.0.1:8091
+}

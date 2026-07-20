@@ -113,6 +113,7 @@ app/
   worker.py      timezone-aware delivery worker
   templates/     participant, team, landing, and privacy surfaces
 deploy/          internal Caddy gateway
+                 plus the shared-hub TLS route for port 8091
 docs/            architecture, business logic, deployment, and Codex notes
 tests/           domain, API, privacy, language, and channel coverage
 ```

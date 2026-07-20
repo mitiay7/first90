@@ -12,7 +12,7 @@ Use `A`/`AAAA` records with the hub address or `CNAME` records to `hub.lea-dev.s
 
 ## Host route
 
-The project gateway binds to `127.0.0.1:8090`. The host reverse proxy should send all three names to that address and terminate TLS.
+The Compose gateway defaults to `127.0.0.1:8090` for local use. On the shared hub, set `APP_PORT=8091` because port 8090 belongs to another service. The host reverse proxy sends all three names to `127.0.0.1:8091` and terminates TLS. The versioned route is `deploy/first90.hub.caddy`.
 
 ## Start
 
@@ -20,9 +20,10 @@ The project gateway binds to `127.0.0.1:8090`. The host reverse proxy should sen
 cp .env.example .env
 # Set strong POSTGRES_PASSWORD, SECRET_KEY, and TELEGRAM_WEBHOOK_SECRET.
 # Set TELEGRAM_BOT_TOKEN and TELEGRAM_BOT_USERNAME to enable live subscription.
+# On hub.lea-dev.site, set APP_PORT=8091.
 docker compose up --build -d
 docker compose ps
-curl --fail http://127.0.0.1:8090/health/ready
+curl --fail http://127.0.0.1:${APP_PORT:-8090}/health/ready
 ```
 
 Do not commit `.env`. Keep the OpenAI and Telegram keys only on the server.
