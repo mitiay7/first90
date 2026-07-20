@@ -1,0 +1,18 @@
+[
+  {"name": "Amsterdam", "country_code": "NL", "timezone": "Europe/Amsterdam"},
+  {"name": "Berlin", "country_code": "DE", "timezone": "Europe/Berlin"},
+  {"name": "Copenhagen", "country_code": "DK", "timezone": "Europe/Copenhagen"},
+  {"name": "Dublin", "country_code": "IE", "timezone": "Europe/Dublin"},
+  {"name": "Helsinki", "country_code": "FI", "timezone": "Europe/Helsinki"},
+  {"name": "Lisbon", "country_code": "PT", "timezone": "Europe/Lisbon"},
+  {"name": "Madrid", "country_code": "ES", "timezone": "Europe/Madrid"},
+  {"name": "Paris", "country_code": "FR", "timezone": "Europe/Paris"},
+  {"name": "Prague", "country_code": "CZ", "timezone": "Europe/Prague"},
+  {"name": "Riga", "country_code": "LV", "timezone": "Europe/Riga"},
+  {"name": "Rome", "country_code": "IT", "timezone": "Europe/Rome"},
+  {"name": "Stockholm", "country_code": "SE", "timezone": "Europe/Stockholm"},
+  {"name": "Tallinn", "country_code": "EE", "timezone": "Europe/Tallinn"},
+  {"name": "Vienna", "country_code": "AT", "timezone": "Europe/Vienna"},
+  {"name": "Vilnius", "country_code": "LT", "timezone": "Europe/Vilnius"},
+  {"name": "Warsaw", "country_code": "PL", "timezone": "Europe/Warsaw"}
+]

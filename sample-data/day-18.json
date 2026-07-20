@@ -1,0 +1,28 @@
+{
+  "participant": {
+    "name": "Jordan Lee",
+    "role": "People Manager",
+    "city": "Riga",
+    "company_context": "new",
+    "city_context": "same",
+    "work_mode": "hybrid",
+    "program_day": 18
+  },
+  "touchpoints": [
+    {
+      "type": "focus",
+      "title": "See the signal: map the system",
+      "duration_minutes": 4
+    },
+    {
+      "type": "action",
+      "title": "Make one low-cost ask",
+      "duration_minutes": 8
+    },
+    {
+      "type": "reflection",
+      "title": "Close the loop: map the system",
+      "duration_minutes": 5
+    }
+  ]
+}

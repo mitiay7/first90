@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Privacy — First 90{% endblock %}
+{% block body %}
+<header class="site-header wrap">
+  <a class="brand" href="/"><span class="brand-mark">F<span>90</span></span><span>First 90</span></a>
+  <a class="button button-small button-ghost" href="/journey">Open demo</a>
+</header>
+<main class="legal-page wrap">
+  <span class="section-kicker">Privacy by design</span>
+  <h1>Support without surveillance.</h1>
+  <p class="legal-lede">First 90 separates personal reflection from team-level signals. This public demo uses fictional sample data.</p>
+  <section><h2>Private by default</h2><p>Journal entries and AI coach conversations belong to the participant. Team Studio never exposes their text.</p></section>
+  <section><h2>Minimal signals</h2><p>Team views use progress, activity, and consented mood scores to identify where a human check-in may help. They do not diagnose performance or wellbeing.</p></section>
+  <section><h2>AI boundaries</h2><p>The coach receives role context, program day, transition context, work mode, and the question. It does not receive private journal history. A privacy-preserving safety identifier is sent with live OpenAI requests.</p></section>
+  <section><h2>Demo data</h2><p>All names, emails, reflections, and metrics in the public demo are fictional. The demo can be reset at any time.</p></section>
+</main>
+{% endblock %}

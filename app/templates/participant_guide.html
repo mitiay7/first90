@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}How to use First 90{% endblock %}
+{% block body %}
+<header class="site-header wrap">
+  <a class="brand" href="/"><span class="brand-mark">F<span>90</span></span><span>First 90</span></a>
+  <nav class="site-nav"><a href="#telegram">Telegram start</a><a href="#first-days">First 3 days</a><a href="#access">Access</a></nav>
+  <a class="button button-small button-ghost" href="/journey">Open journey</a>
+</header>
+
+<main class="user-guide wrap">
+  <section class="user-guide-hero">
+    <div><span class="section-kicker">PARTICIPANT GUIDE</span><h1>One clear move at a time.</h1><p>First 90 supports a new role without adding another course to finish. Use it for a few focused minutes, then return to real work.</p></div>
+    <div class="free-card"><span>PHASE 1</span><strong>Free early access</strong><p>No card. No checkout. No billing data.</p></div>
+  </section>
+
+  <section class="guide-start">
+    <span class="tiny-label">START IN 60 SECONDS</span>
+    <div class="start-grid">
+      <article><span>01</span><h2>Open today</h2><p>Your journey resumes at the current day and touchpoint.</p></article>
+      <article><span>02</span><h2>Make one move</h2><p>Read the lens, complete the small action, and close the loop.</p></article>
+      <article><span>03</span><h2>Notice the pattern</h2><p>Save an energy signal or private reflection when it is useful.</p></article>
+    </div>
+  </section>
+
+  <section class="first-days-preview" id="first-days">
+    <div class="section-heading"><span>Tailored preview</span><h2>First three days.<br>Same company, new role.</h2><p>For a People Manager staying in the same company and city: nine specific capsules, original illustrations, and selected learning resources.</p></div>
+    <div class="first-days-grid">
+      {% for day in first_days %}
+      <article>
+        {% if day.illustration_path %}<img src="{{ day.illustration_path }}" alt="Day {{ day.day }} manager transition illustration" loading="lazy">{% endif %}
+        <div><span class="tiny-label">DAY {{ day.day }} · PEOPLE MANAGER</span>
+          {% for capsule in day.capsules %}
+          <section><small>{{ capsule.touchpoint }} · {{ capsule.duration_minutes }} min</small><h3>{{ capsule.title }}</h3><p>{{ capsule.body }}</p>{% if capsule.resource_url %}<a href="{{ capsule.resource_url }}" target="_blank" rel="noopener noreferrer">{{ capsule.resource_kind }} · {{ capsule.resource_title }} ↗</a>{% endif %}</section>
+          {% endfor %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="participant-manual" id="daily-rhythm">
+    <aside><span>IN THIS GUIDE</span><a href="#touchpoints">Three touchpoints</a><a href="#mood">Energy signal</a><a href="#journal">Private journal</a><a href="#ai">AI coach</a><a href="#telegram">Telegram</a><a href="#access">Free access</a></aside>
+    <div>
+      <article id="touchpoints"><span class="manual-number">01</span><div><span class="tiny-label">DAILY RHYTHM</span><h2>Focus, action, reflection</h2><p>Each day has three short touchpoints. <strong>Focus</strong> names the useful lens. <strong>Action</strong> turns it into one observable move. <strong>Reflection</strong> captures what changed. Complete them in order; progress is saved automatically.</p><div class="touchpoint-mini"><span>◎ Focus<small>About 4 minutes</small></span><span>↗ Action<small>About 8 minutes</small></span><span>⌁ Reflection<small>About 5 minutes</small></span></div></div></article>
+      <article id="mood"><span class="manual-number">02</span><div><span class="tiny-label">OPTIONAL SIGNAL</span><h2>Record energy, not performance</h2><p>Choose 1–5 to mark your current energy. There is no “good employee” score. The pattern helps you notice change and helps the team offer support without reading private content.</p></div></article>
+      <article id="journal"><span class="manual-number">03</span><div><span class="tiny-label">PRIVATE SPACE</span><h2>Write one honest sentence</h2><p>Use the journal when naming a fact, surprise, or next adjustment would help. Team Studio never receives journal text. In the public demo, Reset demo restores fictional starting data.</p></div></article>
+      <article id="ai"><span class="manual-number">04</span><div><span class="tiny-label">GPT‑5.6 COACH</span><h2>Pressure-test the next move</h2><p>Ask about a conversation, assumption, decision, or conflict. The coach returns a practical read, a move for the next 24 hours, and something to notice. It is workplace guidance, not therapy, legal advice, or an automated decision-maker.</p><div class="example-question"><span>TRY ASKING</span><p>“Two sponsors gave me conflicting priorities. What should I clarify first?”</p></div></div></article>
+      <article id="telegram"><span class="manual-number">05</span><div><span class="tiny-label">OPTIONAL CHANNEL</span><h2>Start your adaptation in Telegram</h2><p>Open the bot link supplied by your program admin, tap <strong>Start</strong>, or send <code>/start</code>. The bot creates your journey through six short questions.</p><ol class="guide-checklist"><li><strong>Step 1 of 6:</strong> enter the name the bot should use.</li><li><strong>Step 2 of 6:</strong> select People Manager, the role supported in early access.</li><li><strong>Step 3 of 6:</strong> choose same or new company.</li><li><strong>Step 4 of 6:</strong> choose same or new city.</li><li><strong>Step 5 of 6:</strong> select a supported European city, such as Riga, Berlin, or Paris. This sets the delivery time zone.</li><li><strong>Step 6 of 6:</strong> choose office, hybrid, or remote work.</li></ol><p>Your tailored Day 1 focus arrives immediately. Use <code>/today</code> for the current touchpoint, <code>/mood 1-5</code> for energy, <code>/pause</code> to pause or resume, and <code>/web</code> for the optional web demo. Plain text in the private bot chat becomes a private journal entry. Send <code>/cancel</code> to leave an unfinished setup.</p></div></article>
+      <article id="access"><span class="manual-number">06</span><div><span class="tiny-label">ACCESS & ROADMAP</span><h2>Phase 1 is free</h2><p>Current early access is free. The product does not ask for a card, create a billing profile, or call a payment provider.</p><div class="phase-roadmap"><section><span>NOW · PHASE 1</span><h3>Open early access</h3><ul><li>Full 90-day demo journey</li><li>Web and Telegram channels</li><li>Energy, journal, and AI coach</li><li>No payment gateway</li></ul></section><section><span>NEXT · PHASE 2</span><h3>Optional paid plans</h3><ul><li>Hosted secure checkout</li><li>Plan and entitlement management</li><li>Idempotent payment webhooks</li><li>Cancellation and refund flows</li></ul></section></div><p class="access-note">Phase 2 will be introduced only after the free experience, value, privacy boundary, and operational reliability are validated.</p></div></article>
+    </div>
+  </section>
+
+  <section class="guide-final"><h2>Ready for today?</h2><p>Open the live journey at day 18. No account or card required.</p><a class="button button-primary" href="/journey">Experience day 18 ↗</a></section>
+</main>
+
+<footer class="site-footer wrap"><a class="brand" href="/"><span class="brand-mark">F<span>90</span></span><span>First 90</span></a><p>Free early access · Payment gateway planned for Phase 2.</p><div><a href="/privacy">Privacy</a><a href="/studio/guide">Admin guide</a><a href="/reviewers">Reviewer guide</a></div></footer>
+{% endblock %}

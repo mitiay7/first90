@@ -1,0 +1,68 @@
+name: first90
+
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-first90}
+      POSTGRES_USER: ${POSTGRES_USER:-first90}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-first90-local-password}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-first90} -d ${POSTGRES_DB:-first90}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  web:
+    build: .
+    restart: unless-stopped
+    environment: &app-environment
+      APP_ENV: ${APP_ENV:-production}
+      APP_BASE_URL: ${APP_BASE_URL:-http://localhost:8090}
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-first90}:${POSTGRES_PASSWORD:-first90-local-password}@db:5432/${POSTGRES_DB:-first90}
+      DEMO_MODE: ${DEMO_MODE:-true}
+      SECRET_KEY: ${SECRET_KEY:-local-development-secret-change-me}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-5.6-sol}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_BOT_USERNAME: ${TELEGRAM_BOT_USERNAME:-}
+      TELEGRAM_WEBHOOK_SECRET: ${TELEGRAM_WEBHOOK_SECRET:-local-webhook-secret}
+      PUBLIC_HOST: ${PUBLIC_HOST:-first90.hub.lea-dev.site}
+      STUDIO_HOST: ${STUDIO_HOST:-first90-studio.hub.lea-dev.site}
+      API_HOST: ${API_HOST:-first90-api.hub.lea-dev.site}
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  worker:
+    build: .
+    restart: unless-stopped
+    command: ["uv", "run", "--no-sync", "python", "-m", "app.worker"]
+    environment: *app-environment
+    depends_on:
+      db:
+        condition: service_healthy
+      web:
+        condition: service_healthy
+
+  gateway:
+    image: caddy:2.10-alpine
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${APP_PORT:-8090}:80"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+    depends_on:
+      web:
+        condition: service_healthy
+
+volumes:
+  postgres-data:

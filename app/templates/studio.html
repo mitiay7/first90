@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Team Studio — First 90{% endblock %}
+{% block body %}
+<div class="studio-shell">
+  <aside class="studio-sidebar">
+    <a class="brand brand-light" href="/"><span class="brand-mark">F<span>90</span></span><span>First 90</span></a>
+    <span class="workspace-label">PEOPLE TEAM</span>
+    <nav class="app-nav">
+      <a class="active" href="/studio"><span>◫</span>Overview</a>
+      <a href="#people"><span>◎</span>People</a>
+      <a href="#content"><span>▤</span>Journey content</a>
+      <a href="#signals"><span>⌁</span>Signals</a>
+      <a href="/studio/guide"><span>?</span>Admin guide</a>
+      <a href="/api/docs"><span>↗</span>API</a>
+    </nav>
+    <div class="studio-sidebar-note"><span>Privacy by design</span><p>Teams see patterns, never private journal entries or coach conversations.</p></div>
+    <a class="back-to-journey" href="/journey">← Open participant view</a>
+  </aside>
+
+  <main class="studio-main">
+    <header class="studio-header">
+      <div><span class="app-kicker">TEAM STUDIO</span><h1>Transition pulse</h1><p>Where is momentum growing, and where could one human check-in help?</p></div>
+      <div class="live-badge"><i></i> Live demo data</div>
+    </header>
+
+    <section class="metric-grid">
+      <article><span>Active journeys</span><strong>{{ state.metrics.active }}</strong><em>of {{ state.metrics.participants }} people</em><i class="metric-line line-up"></i></article>
+      <article><span>Average energy</span><strong>{{ state.metrics.average_mood }}</strong><em>last 7 check-ins</em><i class="metric-line line-flat"></i></article>
+      <article><span>Moves completed</span><strong>{{ state.metrics.completions }}</strong><em>across all journeys</em><i class="metric-line line-up"></i></article>
+      <article><span>Content coverage</span><strong>270</strong><em>90 days × 3 touchpoints</em><i class="metric-line line-full"></i></article>
+    </section>
+
+    <div class="studio-grid">
+      <section class="panel people-panel" id="people">
+        <div class="panel-heading"><div><span class="tiny-label">PEOPLE</span><h2>Journey health</h2></div><button class="button button-tiny button-outline">Export summary</button></div>
+        <div class="people-table">
+          <div class="table-head"><span>Person</span><span>Journey</span><span>Progress</span><span>Signal</span></div>
+          {% for person in state.participants %}
+          <div class="person-row">
+            <span class="person-cell"><i class="avatar avatar-{{ (loop.index % 4) + 1 }}">{{ person.name.split()[0][0] }}{{ person.name.split()[-1][0] }}</i><strong>{{ person.name }}<small>{{ person.city }} · {{ person.work_mode|title }}</small></strong></span>
+            <span><strong>Day {{ person.day }}</strong><small>{{ person.role }}</small></span>
+            <span class="table-progress"><i><b style="width: {{ person.progress }}%"></b></i><small>{{ person.progress }}%</small></span>
+            <span><em class="tag {% if person.risk == 'On track' %}tag-good{% elif person.risk == 'Watch' %}tag-watch{% else %}tag-risk{% endif %}">{{ person.risk }}</em></span>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="panel signal-panel" id="signals">
+        <div class="panel-heading"><div><span class="tiny-label">CONSENTED SIGNALS</span><h2>Energy pattern</h2></div><span class="range-pill">7 days</span></div>
+        <div class="big-chart">
+          <div class="chart-labels"><span>5</span><span>4</span><span>3</span><span>2</span><span>1</span></div>
+          <div class="chart-area">
+            <svg viewBox="0 0 600 220" preserveAspectRatio="none" role="img" aria-label="Team energy trend">
+              <defs><linearGradient id="fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6433" stop-opacity=".32"/><stop offset="1" stop-color="#ff6433" stop-opacity="0"/></linearGradient></defs>
+              <path class="chart-fill" d="M0,125 C70,112 90,78 155,92 S240,140 305,112 S405,50 460,75 S535,105 600,68 L600,220 L0,220 Z"/>
+              <path class="chart-stroke" d="M0,125 C70,112 90,78 155,92 S240,140 305,112 S405,50 460,75 S535,105 600,68"/>
+            </svg>
+            <div class="chart-days"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span></div>
+          </div>
+        </div>
+        <p class="signal-insight"><span>✦</span><strong>Pattern, not diagnosis.</strong> Energy dipped around mid-week and recovered after priorities were clarified.</p>
+      </section>
+
+      <section class="panel content-panel" id="content">
+        <div class="panel-heading"><div><span class="tiny-label">PROGRAM</span><h2>Journey coverage</h2></div><span class="tag tag-good">Complete</span></div>
+        <div class="phase-row"><span>01</span><strong>Listen & orient<small>Days 1–30</small></strong><i><b style="width:100%"></b></i><em>90 / 90</em></div>
+        <div class="phase-row"><span>02</span><strong>Align & deliver<small>Days 31–60</small></strong><i><b style="width:100%"></b></i><em>90 / 90</em></div>
+        <div class="phase-row"><span>03</span><strong>Scale & sustain<small>Days 61–90</small></strong><i><b style="width:100%"></b></i><em>90 / 90</em></div>
+      </section>
+
+      <section class="panel operations-panel">
+        <div class="panel-heading"><div><span class="tiny-label">OPERATIONS</span><h2>System health</h2></div><span class="status-online"><i></i> All systems operational</span></div>
+        <div class="service-grid"><span><i></i>Web app<small>Healthy</small></span><span><i></i>Delivery worker<small>Healthy</small></span><span><i></i>PostgreSQL<small>Healthy</small></span><span><i></i>GPT‑5.6 coach<small>Ready</small></span></div>
+      </section>
+    </div>
+  </main>
+</div>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block title %}Admin Guide — First 90{% endblock %}
+{% block body %}
+<div class="studio-shell guide-shell">
+  <aside class="studio-sidebar">
+    <a class="brand brand-light" href="/"><span class="brand-mark">F<span>90</span></span><span>First 90</span></a>
+    <span class="workspace-label">PEOPLE TEAM</span>
+    <nav class="app-nav">
+      <a href="/studio"><span>◫</span>Overview</a>
+      <a href="/studio#people"><span>◎</span>People</a>
+      <a href="/studio#content"><span>▤</span>Journey content</a>
+      <a href="/studio#signals"><span>⌁</span>Signals</a>
+      <a class="active" href="/studio/guide"><span>?</span>Admin guide</a>
+      <a href="/reviewers"><span>✓</span>Reviewer guide</a>
+      <a href="/api/docs"><span>↗</span>API</a>
+    </nav>
+    <div class="studio-sidebar-note"><span>Need a clean start?</span><p>Open the participant journey and use Reset demo. Production records are never affected by demo reset.</p></div>
+    <a class="back-to-journey" href="/studio">← Back to Team Studio</a>
+  </aside>
+
+  <main class="guide-main">
+    <header class="guide-hero">
+      <div><span class="app-kicker">ADMIN GUIDE · VERSION 1.0</span><h1>Run First 90 with confidence.</h1><p>Practical workflows for people-team admins, content owners, and technical operators.</p></div>
+      <a class="button button-outline" href="/api/docs">Open API reference ↗</a>
+    </header>
+
+    <nav class="guide-index" aria-label="Guide sections">
+      <a href="#first-visit"><span>01</span>First visit</a>
+      <a href="#signals"><span>02</span>Read signals</a>
+      <a href="#privacy"><span>03</span>Protect privacy</a>
+      <a href="#content"><span>04</span>Manage content</a>
+      <a href="#channels"><span>05</span>Channels & AI</a>
+      <a href="#operations"><span>06</span>Operations</a>
+    </nav>
+
+    <div class="guide-layout">
+      <div class="guide-content">
+        <section class="guide-section" id="first-visit">
+          <div class="guide-section-number">01</div>
+          <div>
+            <span class="tiny-label">START HERE</span>
+            <h2>Your first five minutes</h2>
+            <ol class="guide-steps">
+              <li><span>1</span><div><strong>Open Team Studio.</strong><p>Confirm active journeys, average energy, completed moves, and 270/270 content coverage.</p></div></li>
+              <li><span>2</span><div><strong>Scan Journey health.</strong><p>Start with “Needs attention,” then “Watch.” Treat labels as prompts for a human check-in, never as performance ratings.</p></div></li>
+              <li><span>3</span><div><strong>Open participant view.</strong><p>Experience the same day and touchpoint participants see. This catches unclear content faster than a spreadsheet review.</p></div></li>
+              <li><span>4</span><div><strong>Verify privacy language.</strong><p>Journal text and coach conversations must stay absent from every team view and export.</p></div></li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="guide-section" id="signals">
+          <div class="guide-section-number">02</div>
+          <div>
+            <span class="tiny-label">JOURNEY HEALTH</span>
+            <h2>Read signals, then talk to people</h2>
+            <div class="guide-callouts">
+              <article class="guide-callout good"><strong>On track</strong><p>Recent energy is stable and activity is current. No intervention needed.</p></article>
+              <article class="guide-callout watch"><strong>Watch</strong><p>Energy is trending lower or activity is several days old. Check context before acting.</p></article>
+              <article class="guide-callout risk"><strong>Needs attention</strong><p>Low recent energy or five inactive days. Offer a private, optional human check-in.</p></article>
+            </div>
+            <div class="do-dont"><div><h3>Do</h3><p>Ask open questions: “What would make this week easier?”</p><p>Look for patterns across time, not one score.</p></div><div><h3>Never</h3><p>Infer health, diagnose burnout, or rank employees.</p><p>Ask participants to reveal journal or coach text.</p></div></div>
+          </div>
+        </section>
+
+        <section class="guide-section" id="privacy">
+          <div class="guide-section-number">03</div>
+          <div>
+            <span class="tiny-label">PRIVACY BOUNDARY</span>
+            <h2>Know what admins can see</h2>
+            <div class="visibility-grid"><article><span>VISIBLE</span><ul><li>Program day and progress</li><li>Last activity</li><li>Consented mood pattern</li><li>Pause state</li><li>Role, city, and work mode</li></ul></article><article><span>PRIVATE</span><ul><li>Journal answers</li><li>AI coach questions</li><li>AI coach responses</li><li>Personal notes</li><li>Raw Telegram messages</li></ul></article></div>
+            <p class="guide-note"><strong>Rule:</strong> use aggregate signals to decide when to offer support, never to make automated employment decisions.</p>
+          </div>
+        </section>
+
+        <section class="guide-section" id="content">
+          <div class="guide-section-number">04</div>
+          <div>
+            <span class="tiny-label">270 TOUCHPOINTS</span>
+            <h2>Understand the content model</h2>
+            <p>Every role has 90 days with three touchpoints: Focus, Action, and Reflection. Content may target company context, city context, or work mode. The delivery engine always picks the most specific match and falls back to universal content.</p>
+            <div class="content-formula"><span>ROLE</span><b>×</b><span>DAY</span><b>×</b><span>TOUCHPOINT</span><b>+</b><span>CONTEXT</span></div>
+            <ol class="guide-checklist">
+              <li>Keep one published universal fallback for every role, day, and touchpoint.</li>
+              <li>Write one observable action that fits inside a real workday.</li>
+              <li>Avoid company-specific facts unless the capsule is explicitly scoped.</li>
+              <li>Preview participant language before publishing a change.</li>
+              <li>Run `make check` after seed or domain changes.</li>
+            </ol>
+            <p><strong>Content-ready role:</strong> People Manager. The release includes 270 universal touchpoints plus nine enhanced Days 1–3 capsules for a manager staying in the same company and city.</p>
+            <p class="guide-note"><strong>Build Week release:</strong> the public Studio is intentionally read-only. Content is versioned in `app/seed.py`; the versioned API exposes reference and demo state for testing.</p>
+          </div>
+        </section>
+
+        <section class="guide-section" id="channels">
+          <div class="guide-section-number">05</div>
+          <div>
+            <span class="tiny-label">WEB · TELEGRAM · GPT‑5.6</span>
+            <h2>Configure channels safely</h2>
+            <div class="config-list">
+              <article><code>OPENAI_API_KEY</code><p>Enables live GPT‑5.6 coaching. Without it, the demo uses a deterministic fallback.</p></article>
+              <article><code>TELEGRAM_BOT_TOKEN</code><p>Enables replies and timezone-aware delivery through the worker.</p></article>
+              <article><code>TELEGRAM_BOT_USERNAME</code><p>Publishes the safe `t.me` link in the reviewer guide.</p></article>
+              <article><code>TELEGRAM_WEBHOOK_SECRET</code><p>Protects the Telegram webhook path and secret-token header.</p></article>
+              <article><code>APP_BASE_URL</code><p>Sets the link returned by Telegram `/start`.</p></article>
+            </div>
+            <h3>Invite participants</h3>
+            <ol class="guide-steps">
+              <li><span>1</span><div><strong>Configure the bot.</strong><p>Set the bot token, username, webhook secret, and public application URL in the server environment.</p></div></li>
+              <li><span>2</span><div><strong>Register the webhook.</strong><p>Point Telegram to the versioned webhook URL and pass the same secret token in the webhook registration.</p></div></li>
+              <li><span>3</span><div><strong>Share the private-chat link.</strong><p>Send participants `https://t.me/&lt;bot_username&gt;`. They tap Start and answer six questions: name, role, company, city context, European city, and work mode.</p></div></li>
+              <li><span>4</span><div><strong>Verify Day 1.</strong><p>Ask a test participant to finish setup and run `/today`. Confirm that same-company and same-city managers receive the enhanced Day 1 content.</p></div></li>
+              <li><span>5</span><div><strong>Create a reviewer admin chat.</strong><p>Add the bot to a Telegram test group. Use `/admin`, `/metrics`, `/roles`, and `/preview 1` through `/preview 3`. Group mode never stores journal text.</p></div></li>
+            </ol>
+            <p class="guide-note"><strong>Secret handling:</strong> set credentials only in server `.env`. Never paste secrets into source, screenshots, issues, or demo video.</p>
+          </div>
+        </section>
+
+        <section class="guide-section" id="operations">
+          <div class="guide-section-number">06</div>
+          <div>
+            <span class="tiny-label">DAILY OPERATIONS</span>
+            <h2>Check, recover, escalate</h2>
+            <div class="command-card"><span>Readiness</span><code>curl --fail https://first90-api.hub.lea-dev.site/health/ready</code></div>
+            <div class="command-card"><span>Container status</span><code>docker compose ps</code></div>
+            <div class="command-card"><span>Recent logs</span><code>docker compose logs --since=15m web worker</code></div>
+            <div class="command-card"><span>Automated checks</span><code>make check</code></div>
+            <ol class="guide-checklist">
+              <li>If readiness fails, check PostgreSQL health before restarting the web container.</li>
+              <li>If Telegram stops, verify webhook URL, secret, worker logs, and bot token.</li>
+              <li>If GPT‑5.6 is unavailable, the fallback keeps coaching usable; inspect web logs before changing configuration.</li>
+              <li>Use Reset demo only for fictional public demo records.</li>
+            </ol>
+          </div>
+        </section>
+      </div>
+
+      <aside class="guide-aside">
+        <div class="guide-aside-card"><span class="tiny-label">QUICK LINKS</span><a href="/studio">Team Studio <b>↗</b></a><a href="/journey">Participant demo <b>↗</b></a><a href="/guide#first-days">Capsule preview <b>↗</b></a><a href="/reviewers">Reviewer guide <b>↗</b></a><a href="/privacy">Privacy model <b>↗</b></a><a href="/api/docs">API docs <b>↗</b></a></div>
+        <div class="guide-aside-card accent"><span>✦</span><h3>One principle</h3><p>Use data to start a better human conversation, not to replace one.</p></div>
+      </aside>
+    </div>
+  </main>
+</div>
+{% endblock %}

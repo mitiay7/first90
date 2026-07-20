@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block title %}Day {{ state.participant.day }} — First 90{% endblock %}
+{% block body %}
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <a class="brand brand-light" href="/"><span class="brand-mark">F<span>90</span></span><span>First 90</span></a>
+    <nav class="app-nav" aria-label="Journey navigation">
+      <a class="active" href="/journey"><span>◉</span>Today</a>
+      <a href="#journey-map"><span>◫</span>Journey</a>
+      <a href="#journal"><span>✎</span>Journal</a>
+      <a href="#coach"><span>✦</span>AI coach</a>
+      <a href="/guide"><span>?</span>How to use</a>
+    </nav>
+    <div class="phase-card">
+      <span>Phase {{ state.phase.number }} of 3</span>
+      <strong>{{ state.phase.name }}</strong>
+      <div class="phase-progress"><i style="width: {{ state.progress }}%"></i></div>
+      <small>{{ state.progress }}% of full journey</small>
+    </div>
+    <div class="sidebar-profile">
+      <span class="avatar avatar-1">JL</span>
+      <strong>{{ state.participant.name }}<small>{{ state.participant.role }}</small></strong>
+      <button class="icon-button" aria-label="Profile options">•••</button>
+    </div>
+  </aside>
+
+  <main class="app-main">
+    <header class="app-header">
+      <button class="mobile-menu" aria-label="Open navigation">F90</button>
+      <div>
+        <span class="app-kicker">MONDAY · DAY {{ state.participant.day }} OF 90 · FREE EARLY ACCESS</span>
+        <h1>Good morning, {{ state.participant.first_name }}.</h1>
+        <p>One clear move is enough for today.</p>
+      </div>
+      <div class="header-actions">
+        <button class="button button-tiny button-muted" id="reset-demo">Reset demo</button>
+        <a class="button button-tiny button-outline" href="/studio">Team studio ↗</a>
+      </div>
+    </header>
+
+    <section class="day-banner" id="journey-map">
+      <div class="day-number"><strong>{{ state.participant.day }}</strong><span>/ 90</span></div>
+      <div>
+        <span class="tiny-label">{{ state.phase.name }}</span>
+        <h2>Map the invisible network</h2>
+        <p>{{ state.phase.promise }}</p>
+      </div>
+      <div class="day-steps" aria-label="Daily progress">
+        {% for capsule in state.capsules %}
+        <span class="{% if capsule.completed %}done{% elif capsule.current %}current{% endif %}">{{ loop.index }}</span>
+        {% if not loop.last %}<i></i>{% endif %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <div class="journey-layout">
+      <section class="touchpoint-list">
+        <div class="section-row"><h2>Today's path</h2><span>About 17 minutes total</span></div>
+        {% for capsule in state.capsules %}
+        <article class="touchpoint-card {% if capsule.current %}active{% endif %} {% if capsule.completed %}complete{% endif %}">
+          <div class="touchpoint-index">
+            {% if capsule.completed %}✓{% else %}0{{ loop.index }}{% endif %}
+          </div>
+          <div class="touchpoint-copy">
+            <span class="tiny-label">{{ capsule.touchpoint }} · {{ capsule.duration_minutes }} MIN</span>
+            <h3>{{ capsule.title }}</h3>
+            {% if capsule.illustration_path %}<img class="capsule-illustration" src="{{ capsule.illustration_path }}" alt="Illustration for {{ capsule.title }}" loading="lazy">{% endif %}
+            <p>{{ capsule.body }}</p>
+            {% if capsule.current %}<blockquote>{{ capsule.prompt }}</blockquote>{% endif %}
+            {% if capsule.resource_url %}<a class="capsule-resource" href="{{ capsule.resource_url }}" target="_blank" rel="noopener noreferrer"><span>{{ capsule.resource_kind }}</span>{{ capsule.resource_title }} ↗</a>{% endif %}
+          </div>
+          {% if capsule.completed %}
+          <button class="capsule-state" disabled>Done</button>
+          {% elif capsule.current %}
+          <button class="button button-primary complete-capsule" data-capsule-id="{{ capsule.id }}">Complete move <span>→</span></button>
+          {% else %}
+          <button class="capsule-state" disabled>Up next</button>
+          {% endif %}
+        </article>
+        {% endfor %}
+
+        <article class="journal-card" id="journal">
+          <div>
+            <span class="tiny-label">PRIVATE JOURNAL</span>
+            <h3>What became clearer today?</h3>
+            <p>Only you can read this. Team analytics never include journal text.</p>
+          </div>
+          <form id="journal-form">
+            <textarea name="answer" rows="3" minlength="2" maxlength="2000" placeholder="Write one honest sentence…" required></textarea>
+            <button class="button button-dark" type="submit">Save reflection</button>
+          </form>
+        </article>
+      </section>
+
+      <aside class="journey-side">
+        <section class="side-card mood-card">
+          <span class="tiny-label">DAILY SIGNAL</span>
+          <h3>How is your energy?</h3>
+          <p>No diagnosis. Just a pattern you can notice.</p>
+          <div class="mood-picker" role="group" aria-label="Energy from one to five">
+            {% for score, face in [(1, '–'), (2, '⌒'), (3, '•'), (4, '⌣'), (5, '✦')] %}
+            <button data-mood-score="{{ score }}" aria-label="Energy {{ score }} of 5"><span>{{ face }}</span><small>{{ score }}</small></button>
+            {% endfor %}
+          </div>
+          <div class="mood-chart" aria-label="Recent energy pattern">
+            {% for mood in state.moods %}<i style="height: {{ 12 + mood.score * 9 }}px" title="Day {{ mood.day }}: {{ mood.score }}"></i>{% endfor %}
+          </div>
+        </section>
+
+        <section class="side-card coach-card" id="coach">
+          <div class="coach-heading"><span class="coach-spark">✦</span><div><span class="tiny-label">GPT‑5.6</span><h3>Transition coach</h3></div></div>
+          <p>Pressure-test a conversation, assumption, or next move.</p>
+          <form id="coach-form">
+            <textarea name="question" rows="3" minlength="3" maxlength="1000" placeholder="I keep getting conflicting priorities…" required></textarea>
+            <button class="button button-coral" type="submit">Ask coach <span>↗</span></button>
+          </form>
+          <div class="coach-answer" id="coach-answer" {% if not state.coach_messages %}hidden{% endif %}>{% if state.coach_messages %}{{ state.coach_messages[0].answer }}{% endif %}</div>
+          <small class="coach-model" id="coach-model">{% if state.coach_messages %}{{ state.coach_messages[0].model }}{% else %}Uses demo fallback when no API key is configured.{% endif %}</small>
+        </section>
+
+        <section class="side-card next-card">
+          <span class="tiny-label">THIS WEEK</span>
+          <h3>Map the system</h3>
+          <div><strong>5</strong><span>moves complete</span></div>
+          <div><strong>4.0</strong><span>average energy</span></div>
+        </section>
+      </aside>
+    </div>
+  </main>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Reviewer guide — First 90{% endblock %}
+{% block body %}
+<header class="site-header wrap">
+  <a class="brand" href="/"><span class="brand-mark">F<span>90</span></span><span>First 90</span></a>
+  <nav class="site-nav"><a href="#checklist">Test checklist</a><a href="#telegram">Telegram</a><a href="#scope">Scope</a></nav>
+  <a class="button button-small button-ghost" href="/journey">Open live demo</a>
+</header>
+
+<main class="user-guide wrap reviewer-guide">
+  <section class="user-guide-hero">
+    <div><span class="section-kicker">BUILD WEEK REVIEWER GUIDE</span><h1>Test the product, not a slide deck.</h1><p>The public demo is open, resettable, and filled only with fictional European sample data. This guide separates working features from deliberate Build Week boundaries.</p></div>
+    <div class="free-card"><span>FAST PATH</span><strong>7–10 minutes</strong><p>No account. No card. No setup for the web path.</p></div>
+  </section>
+
+  <section class="guide-start" id="checklist">
+    <span class="tiny-label">RECOMMENDED TEST PATH</span>
+    <div class="start-grid reviewer-start-grid">
+      <article><span>01</span><h2>Experience one day</h2><p>Open Day 18, complete the current move, save an energy score, add a fictional journal note, and ask the GPT‑5.6 coach a question.</p><a class="text-link" href="/journey">Participant journey <span>→</span></a></article>
+      <article><span>02</span><h2>Inspect team support</h2><p>Open Team Studio. Compare progress and support signals, then verify that journal and coach text never appear.</p><a class="text-link" href="/studio">Team Studio <span>→</span></a></article>
+      <article><span>03</span><h2>Preview tailored content</h2><p>Review Days 1–3 for a manager promoted inside the same company and city, including original illustrations and external learning resources.</p><a class="text-link" href="/guide#first-days">First three days <span>→</span></a></article>
+      <article><span>04</span><h2>Reset safely</h2><p>Use Reset demo in the participant view. Only fictional demo records are restored; no external account is changed.</p></article>
+    </div>
+  </section>
+
+  <section class="participant-manual reviewer-manual">
+    <aside><span>REVIEW AREAS</span><a href="#telegram">Telegram</a><a href="#admin-chat">Admin chat</a><a href="#studio">Team Studio</a><a href="#scope">Content scope</a><a href="#boundaries">Boundaries</a></aside>
+    <div>
+      <article id="telegram"><span class="manual-number">01</span><div><span class="tiny-label">REAL PARTICIPANT SUBSCRIPTION</span><h2>Start a personal journey in Telegram</h2>
+        {% if bot_url %}<p><a class="button button-primary" href="{{ bot_url }}" target="_blank" rel="noopener noreferrer">Open the First 90 bot ↗</a></p>{% else %}<p>The live bot link appears here when <code>TELEGRAM_BOT_USERNAME</code> is configured. The web demo remains fully testable without Telegram.</p>{% endif %}
+        <ol class="guide-checklist"><li>Open the bot privately and tap <strong>Start</strong> or send <code>/start</code>.</li><li>Answer six short questions: name, role, company context, city context, European city, and work mode.</li><li>Early access accepts <strong>People Manager</strong> as the role.</li><li>Receive the first tailored Day 1 focus immediately.</li><li>Try <code>/today</code>, <code>/mood 4</code>, <code>/pause</code>, and a plain-text private journal note.</li></ol>
+      </div></article>
+
+      <article id="admin-chat"><span class="manual-number">02</span><div><span class="tiny-label">TELEGRAM GROUP MODE</span><h2>Add the bot to a reviewer admin chat</h2><p>Create or open a Telegram test group, add the First 90 bot, then send these commands. Group mode exposes only fictional aggregate demo information and content previews.</p>
+        <div class="reviewer-command-grid"><code>/admin</code><span>Capabilities and live links</span><code>/metrics</code><span>Aggregate journey health</span><code>/roles</code><span>Content-ready role and contexts</span><code>/preview 1</code><span>Day 1 tailored capsule preview</span><code>/preview 2</code><span>Day 2 tailored capsule preview</span><code>/preview 3</code><span>Day 3 tailored capsule preview</span><code>/privacy</code><span>Visible and private data boundary</span></div>
+        <p class="access-note">Plain text sent in a group is never stored as a participant journal entry. Personal onboarding must happen in a private bot chat.</p>
+      </div></article>
+
+      <article id="studio"><span class="manual-number">03</span><div><span class="tiny-label">ADMIN EXPERIENCE</span><h2>What works in Team Studio</h2><div class="visibility-grid"><article><span>TEST NOW</span><ul><li>Aggregate participant and activity metrics</li><li>Energy trend and support-risk labels</li><li>Progress by 30-day phase</li><li>Fictional participant table</li><li>Service status and content coverage</li><li>Separate operational admin guide</li></ul></article><article><span>PRIVACY CHECK</span><ul><li>No journal answers</li><li>No GPT‑5.6 questions or answers</li><li>No raw Telegram messages</li><li>No employee ranking</li><li>No automated employment decisions</li><li>No billing data</li></ul></article></div><p>The Build Week Studio is read-only. Content stays reviewable and versioned in the public repository.</p></div></article>
+
+      <article id="scope"><span class="manual-number">04</span><div><span class="tiny-label">CONTENT-READY SCOPE</span><h2>One role, complete depth</h2><p><strong>People Manager</strong> is the content-ready role in this release: 90 days and 270 universal touchpoints. Personalization supports same or new company, same or new city, and office, hybrid, or remote work.</p><p>Days 1–3 also have enhanced content for an internal manager staying in the same city. Sixteen seeded European cities provide valid IANA time zones for delivery.</p><p>Additional roles are a content-expansion track, not simulated coverage.</p></div></article>
+
+      <article id="boundaries"><span class="manual-number">05</span><div><span class="tiny-label">HONEST DEMO BOUNDARIES</span><h2>What is deliberately not in Phase 1</h2><ul class="guide-checklist"><li>No payment gateway: early access is free; secure hosted checkout belongs to Phase 2.</li><li>No self-service content editor: Build Week content is versioned in code and Studio is read-only.</li><li>The public web participant is fictional and resettable; a personal Telegram subscription stays in Telegram.</li><li>Without an OpenAI API key, the coach uses a clearly labeled deterministic fallback.</li><li>Only People Manager has a complete reviewed journey today.</li></ul></div></article>
+    </div>
+  </section>
+
+  <section class="guide-final"><h2>Start with the real journey.</h2><p>Then inspect the team view and privacy boundary.</p><a class="button button-primary" href="/journey">Open participant demo ↗</a></section>
+</main>
+
+<footer class="site-footer wrap"><a class="brand" href="/"><span class="brand-mark">F<span>90</span></span><span>First 90</span></a><p>OpenAI Build Week 2026 · Reviewer-ready public demo.</p><div><a href="/studio/guide">Admin guide</a><a href="/api/docs">API</a><a href="https://github.com/mitiay7/first90">GitHub</a></div></footer>
+{% endblock %}
