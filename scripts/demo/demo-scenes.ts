@@ -47,7 +47,7 @@ export const demoScenes: readonly DemoSceneDefinition[] = [
   {
     id: "04-gpt-coach",
     audioFile: "demo/voiceover/04.mp3",
-    description: "Live GPT-5.6 coaching and privacy boundary",
+    description: "GPT-5.6-ready coaching, deterministic fallback, and privacy boundary",
     leadInMs: 300,
     trailingHoldMs: 750,
     minimumVisualDurationMs: 10_000,

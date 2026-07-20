@@ -142,7 +142,10 @@ pnpm exec playwright install chromium
 pnpm demo:video --no-captions
 ```
 
-The pipeline records the deployed product at 1920×1080, performs real fictional demo actions, captures a live GPT‑5.6 coach response, mixes verified CC0 music, renders H.264/AAC MP4, restores the public demo, and validates the result below the strict 178-second limit. Output: `artifacts/video/first90-demo.mp4`.
+The pipeline records the deployed product at 1920×1080, performs real fictional demo actions,
+captures the deterministic coach fallback (or a live GPT‑5.6 response when a key is configured),
+mixes verified CC0 music, renders H.264/AAC MP4, restores the public demo, and validates the result
+below the strict 178-second limit. Output: `artifacts/video/first90-demo.mp4`.
 
 See [Automated demo video](docs/AUTOMATED_DEMO_VIDEO.md).
 

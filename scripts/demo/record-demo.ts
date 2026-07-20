@@ -70,6 +70,7 @@ export async function recordDemo(): Promise<void> {
     const recordingState: RecordingState = {
       participantJourneyRecorded: false,
       coachResponseRecorded: false,
+      coachMode: null,
       endingCardShown: false,
     };
     const scenesCompleted: string[] = [];
@@ -90,7 +91,8 @@ export async function recordDemo(): Promise<void> {
     if (!recordingState.participantJourneyRecorded)
       throw new Error("Participant journey actions were not recorded");
     if (!recordingState.coachResponseRecorded)
-      throw new Error("Live coach response was not recorded");
+      throw new Error("Coach response was not recorded");
+    if (!recordingState.coachMode) throw new Error("Coach mode was not recorded");
     if (!recordingState.endingCardShown) throw new Error("Ending card was not recorded");
     const finalReset = await context.request.post(`${baseUrl}/api/v1/demo/reset`);
     if (!finalReset.ok()) throw new Error(`Final demo reset failed with ${finalReset.status()}`);

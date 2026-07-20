@@ -23,6 +23,7 @@ type Probe = {
 type RecordingReport = {
   participantJourneyRecorded: boolean;
   coachResponseRecorded: boolean;
+  coachMode: "live" | "fallback" | null;
   endingCardShown: boolean;
   scenesCompleted: string[];
 };
@@ -63,6 +64,7 @@ export function validateVideo(): Record<string, unknown> {
     allScenesRecorded: recording.scenesCompleted.length === timeline.scenes.length,
     participantJourneyRecorded: recording.participantJourneyRecorded,
     coachResponseRecorded: recording.coachResponseRecorded,
+    coachModeRecorded: recording.coachMode === "live" || recording.coachMode === "fallback",
     endingCardShown: recording.endingCardShown,
     licensedBackgroundMusicSource: existsSync(backgroundMusicSource),
     preparedBackgroundMusic: existsSync(artifactPaths.backgroundMusic),
@@ -78,6 +80,7 @@ export function validateVideo(): Record<string, unknown> {
     audioDurationSeconds: audioDuration,
     fileSizeBytes: statSync(artifactPaths.finalVideo).size,
     audioFilesUsed,
+    coachMode: recording.coachMode,
     checks,
   };
   writeFileSync(artifactPaths.validation, `${JSON.stringify(validation, null, 2)}\n`);

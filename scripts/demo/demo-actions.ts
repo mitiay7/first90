@@ -11,6 +11,7 @@ type SceneContext = {
 export type RecordingState = {
   participantJourneyRecorded: boolean;
   coachResponseRecorded: boolean;
+  coachMode: "live" | "fallback" | null;
   endingCardShown: boolean;
 };
 
@@ -90,12 +91,20 @@ async function showCoach(context: SceneContext, state: RecordingState): Promise<
     .getByPlaceholder("I keep getting conflicting priorities…")
     .fill("Two sponsors gave me conflicting priorities. What should I clarify first?");
   await coach.getByRole("button", { name: /Ask coach/ }).click();
-  await page
-    .locator("#coach-model")
-    .filter({ hasText: "Live response" })
-    .waitFor({ timeout: 25_000 });
+  const modelLabel = page.locator("#coach-model");
+  await modelLabel.waitFor({ state: "visible", timeout: 25_000 });
+  await page.waitForFunction(
+    () => {
+      const text = document.querySelector("#coach-model")?.textContent ?? "";
+      return text.includes("Live response") || text.includes("Demo fallback");
+    },
+    undefined,
+    { timeout: 25_000 },
+  );
+  const modelText = (await modelLabel.textContent()) ?? "";
   await page.locator("#coach-answer").scrollIntoViewIfNeeded();
   state.coachResponseRecorded = true;
+  state.coachMode = modelText.includes("Live response") ? "live" : "fallback";
 }
 
 async function showTailoredCapsules(context: SceneContext): Promise<void> {
