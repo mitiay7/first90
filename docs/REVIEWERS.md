@@ -8,7 +8,7 @@ The canonical interactive guide is available at `/reviewers` in the application.
 2. Open `/studio`; inspect aggregate progress and support signals. Verify that no journal or coach text appears.
 3. Open `/guide#first-days`; preview the nine enhanced Days 1–3 capsules for a People Manager staying in the same company and city.
 4. Use **Reset demo** to restore fictional web state.
-5. Open the configured Telegram bot privately, send `/start`, complete the six-question onboarding, and try `/today`.
+5. Open [@first90_OpenAI_Week_bot](https://t.me/first90_OpenAI_Week_bot) privately, send `/start`, complete the six-question onboarding, and try `/today`.
 6. Add the bot to a Telegram test group and try `/admin`, `/metrics`, `/roles`, `/preview 1`, and `/privacy`.
 
 ## Supported scope

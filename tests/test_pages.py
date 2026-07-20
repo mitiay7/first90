@@ -8,6 +8,14 @@ def test_landing_renders_product_story(client: TestClient) -> None:
     assert "OpenAI Build Week 2026" in response.text
 
 
+def test_pages_use_origin_relative_static_assets(client: TestClient) -> None:
+    response = client.get("/reviewers")
+    assert response.status_code == 200
+    assert 'href="/static/styles.css"' in response.text
+    assert 'src="/static/app.js"' in response.text
+    assert "://testserver/static/" not in response.text
+
+
 def test_journey_renders_real_day_state(client: TestClient) -> None:
     response = client.get("/journey")
     assert response.status_code == 200

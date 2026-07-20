@@ -2,7 +2,7 @@
 
 ## Participant path
 
-1. Open the bot link provided by the program admin: `https://t.me/<bot_username>`.
+1. Open [@first90_OpenAI_Week_bot](https://t.me/first90_OpenAI_Week_bot).
 2. Tap **Start** or send `/start`.
 3. Enter the preferred name.
 4. Select **People Manager**, the role supported in early access.
@@ -33,7 +33,7 @@ Send `/cancel` to discard an unfinished onboarding flow. Sending `/start` after 
    ```
 
 4. Use the same webhook secret as Telegram's secret-token header.
-5. Share `https://t.me/<bot_username>` with participants.
+5. Share `https://t.me/first90_OpenAI_Week_bot` with participants.
 6. Complete one test onboarding and verify `/today` before inviting a cohort.
 
 ## Reviewer admin chat

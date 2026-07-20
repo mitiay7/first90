@@ -12,6 +12,7 @@ Built for the **Work & Productivity** track of OpenAI Build Week 2026.
 - Participant guide: `https://first90.hub.lea-dev.site/guide`
 - Reviewer guide: `https://first90.hub.lea-dev.site/reviewers`
 - API documentation: `https://first90-api.hub.lea-dev.site/api/docs`
+- Telegram bot: `https://t.me/first90_OpenAI_Week_bot`
 
 The public demo uses fictional European sample data. No login is required. Use **Reset demo** to restore Jordan Lee to day 18.
 
@@ -85,7 +86,7 @@ Set `TELEGRAM_BOT_TOKEN`, `TELEGRAM_BOT_USERNAME`, `TELEGRAM_WEBHOOK_SECRET`, an
 https://first90-api.hub.lea-dev.site/api/v1/telegram/webhook/<TELEGRAM_WEBHOOK_SECRET>
 ```
 
-Participant onboarding is real, not pre-seeded. Open `https://t.me/<bot_username>` in a private chat, tap **Start**, and answer six questions:
+Participant onboarding is real, not pre-seeded. Open [@first90_OpenAI_Week_bot](https://t.me/first90_OpenAI_Week_bot) in a private chat, tap **Start**, and answer six questions:
 
 1. Preferred name.
 2. Role. Early access currently supports **People Manager**.
