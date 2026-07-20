@@ -151,6 +151,21 @@ def reviewer_guide(request: Request) -> HTMLResponse:
     )
 
 
+@app.get("/presentation", response_class=HTMLResponse, include_in_schema=False)
+def presentation(request: Request) -> HTMLResponse:
+    scene = request.query_params.get("scene", "01")
+    phase = request.query_params.get("phase", "evidence")
+    if scene not in {"01", "02", "08"}:
+        raise HTTPException(status_code=404, detail="Presentation scene not found")
+    if phase not in {"evidence", "ending"}:
+        raise HTTPException(status_code=404, detail="Presentation phase not found")
+    return templates.TemplateResponse(
+        request=request,
+        name="presentation.html",
+        context=_page_context(request, "presentation", scene=scene, phase=phase),
+    )
+
+
 @app.get("/health/live", tags=["operations"])
 def live() -> dict[str, str]:
     return {"status": "ok", "service": "first90"}

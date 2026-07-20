@@ -74,3 +74,14 @@ def test_reviewer_guide_is_honest_and_actionable(client: TestClient) -> None:
     assert "/preview 1" in response.text
     assert "People Manager" in response.text
     assert "Only People Manager has a complete reviewed journey" in response.text
+
+
+def test_demo_presentation_scenes_are_available(client: TestClient) -> None:
+    hook = client.get("/presentation?scene=01")
+    evidence = client.get("/presentation?scene=08&phase=evidence")
+    ending = client.get("/presentation?scene=08&phase=ending")
+    assert hook.status_code == 200
+    assert 'data-testid="presentation-hook"' in hook.text
+    assert 'data-testid="build-evidence"' in evidence.text
+    assert 'data-testid="ending-card"' in ending.text
+    assert client.get("/presentation?scene=99").status_code == 404

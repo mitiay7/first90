@@ -132,6 +132,20 @@ Key decisions remained explicit and human-reviewable:
 
 See [docs/CODEX.md](docs/CODEX.md) for the build log and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for system boundaries.
 
+## Automated demo video
+
+The repository includes the deterministic contest-video pipeline adapted from the proven Take my money workflow. Eight narration files drive one shared browser and audio timeline:
+
+```bash
+pnpm install
+pnpm exec playwright install chromium
+pnpm demo:video --no-captions
+```
+
+The pipeline records the deployed product at 1920×1080, performs real fictional demo actions, captures a live GPT‑5.6 coach response, mixes verified CC0 music, renders H.264/AAC MP4, restores the public demo, and validates the result below the strict 178-second limit. Output: `artifacts/video/first90-demo.mp4`.
+
+See [Automated demo video](docs/AUTOMATED_DEMO_VIDEO.md).
+
 ## License
 
 [MIT](LICENSE)

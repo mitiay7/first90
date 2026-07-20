@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}First 90 demo presentation{% endblock %}
+{% block body %}
+<main class="presentation-shell">
+  {% if scene == "01" %}
+  <section class="presentation-scene presentation-hook" data-testid="presentation-hook">
+    <div class="presentation-topline">
+      <span class="presentation-brand"><span class="brand-mark">F<span>90</span></span> First 90</span>
+      <span>OPENAI BUILD WEEK 2026</span>
+    </div>
+    <div class="presentation-hook-copy">
+      <span class="section-kicker">A TRANSITION SYSTEM FOR REAL WORK</span>
+      <h1>Ninety days<br>of noise.</h1>
+      <p>One useful move at a time.</p>
+    </div>
+    <div class="presentation-orbit orbit-a"></div>
+    <div class="presentation-orbit orbit-b"></div>
+    <div class="presentation-floating-card card-day"><small>DAY</small><strong>18</strong><span>of 90</span></div>
+    <div class="presentation-floating-card card-promise"><small>TODAY</small><strong>Make one<br>low-cost ask</strong><span>8 minutes</span></div>
+    <div class="presentation-footerline"><span>Live product</span><span>Fictional European data</span><span>Free early access</span></div>
+  </section>
+  {% elif scene == "02" %}
+  <section class="presentation-scene presentation-model" data-testid="product-model">
+    <div class="presentation-topline">
+      <span class="presentation-brand"><span class="brand-mark">F<span>90</span></span> First 90</span>
+      <span>ONE COMPLETE JOURNEY</span>
+    </div>
+    <div class="presentation-model-heading">
+      <span class="section-kicker">DAILY RHYTHM</span>
+      <h1>Small enough for today.<br>Complete enough for ninety days.</h1>
+    </div>
+    <div class="presentation-touchpoints">
+      <article class="coral"><span>01</span><strong>Focus</strong><p>See the useful signal.</p></article>
+      <article class="cream"><span>02</span><strong>Action</strong><p>Make one observable move.</p></article>
+      <article class="sage"><span>03</span><strong>Reflection</strong><p>Notice what changed.</p></article>
+    </div>
+    <div class="presentation-stats">
+      <div><strong>90</strong><span>days</span></div>
+      <div><strong>270</strong><span>touchpoints</span></div>
+      <div><strong>16</strong><span>European cities</span></div>
+      <p>Role · company context · city context · work mode · time zone</p>
+    </div>
+  </section>
+  {% elif phase == "evidence" %}
+  <section class="presentation-scene presentation-evidence" data-testid="build-evidence">
+    <div class="presentation-topline">
+      <span class="presentation-brand"><span class="brand-mark">F<span>90</span></span> First 90</span>
+      <span>BUILT DURING OPENAI BUILD WEEK</span>
+    </div>
+    <div class="presentation-evidence-heading">
+      <span class="section-kicker">CODEX + GPT-5.6</span>
+      <h1>From private reference<br>to public product.</h1>
+    </div>
+    <div class="presentation-evidence-grid">
+      <article><span>CODEX</span><strong>Rebuilt from blank Git history</strong><p>Domain model, responsive product, tests, deployment, Telegram, and English documentation.</p></article>
+      <article><span>GPT-5.6 RESPONSES API</span><strong>Practical transition coaching</strong><p>Low reasoning effort, strict output contract, store disabled, hashed safety identifier, deterministic fallback.</p></article>
+      <article><span>PRIVACY</span><strong>Personal space stays personal</strong><p>No journal history reaches the model. No coach text or raw messages reach Team Studio.</p></article>
+      <article><span>LIVE STACK</span><strong>Four healthy containers</strong><p>FastAPI · PostgreSQL · delivery worker · Caddy</p></article>
+    </div>
+  </section>
+  {% else %}
+  <section class="presentation-scene presentation-ending" data-testid="ending-card">
+    <div class="ending-mark"><span class="brand-mark">F<span>90</span></span></div>
+    <span class="section-kicker">FREE PHASE ONE · LIVE NOW</span>
+    <h1>Start the role.<br><em>Keep yourself.</em></h1>
+    <p>first90.hub.lea-dev.site</p>
+    <div><span>Web journey</span><span>GPT-5.6 coach</span><span>Telegram</span><span>Team Studio</span></div>
+  </section>
+  {% endif %}
+</main>
+{% endblock %}

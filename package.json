@@ -1,0 +1,27 @@
+{
+  "name": "first90-demo-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deterministic demo-video tooling for First 90.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "packageManager": "pnpm@11.15.1",
+  "scripts": {
+    "demo:inspect-audio": "tsx scripts/demo/inspect-audio.ts",
+    "demo:timeline": "tsx scripts/demo/build-timeline.ts",
+    "demo:record": "tsx scripts/demo/record-demo.ts",
+    "demo:render": "tsx scripts/demo/assemble-voiceover.ts && tsx scripts/demo/generate-background-music.ts && tsx scripts/demo/render-video.ts",
+    "demo:validate": "tsx scripts/demo/validate-video.ts",
+    "demo:video": "tsx scripts/demo/video-pipeline.ts",
+    "demo:typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.1",
+    "@types/node": "26.1.1",
+    "tsx": "4.23.1",
+    "typescript": "6.0.3"
+  }
+}
